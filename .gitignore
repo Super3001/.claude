@@ -1,0 +1,17 @@
+backups
+cache
+debug
+file-history
+paste-cache
+plans
+plugins
+projects
+sessions
+shell-snapshots
+tasks
+telemetry
+.credentials.json
+history.jsonl
+mcp-needs-auth-cache.json
+settings*.json
+stats-cache.json

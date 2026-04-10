@@ -1,8 +1,8 @@
 # general rules
 
-1. 覆盖文件前先备份
+**IMPORTANT** <br> 通过命令或者Python脚本覆盖文件，例如`command > a.log`, `python3 regenerate.py`等之前，**必须**先备份旧文件，以供错误恢复。
 
-2. 做破坏性git操作，如git reset, git rebase等命令之前，先检查确认当前git状态
+**IMPORTANT** <br> 执行任何破坏性 Git 操作前，必须重新检查当前状态并确认目标 commit，禁止基于上一次已知状态直接操作。
 
 # general 意图识别
 
@@ -35,8 +35,6 @@
 执行 `git reset`、`git rebase` 等破坏性 Git 操作前，必须先检查当前状态，不得假设 HEAD 仍停留在上一次已知位置。
 
 至少先看最近几条提交历史（如 `git log --oneline -5`），确认将被撤销或改写的 commit id 的确就是目标 commit；如果对话中断过、用户自己执行过命令，或前一步不是我刚完成的，更要重新确认一次当前状态。
-
-**IMPORTANT** <br> 执行任何破坏性 Git 操作前，必须重新检查当前状态并确认目标 commit，禁止基于上一次已知状态直接操作。
 
 # general development specifications
 

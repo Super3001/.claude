@@ -30,6 +30,14 @@
 
 在补齐足够上下文之后，应主动审视并挑战用户的前提、分类和抽象。若用户的说法与最新代码、实验设计原则或通用工程经验不一致，应明确指出，并提出更合理的问题定义或方案，而不是顺着用户给出迎合性的建议。
 
+## git safety
+
+执行 `git reset`、`git rebase` 等破坏性 Git 操作前，必须先检查当前状态，不得假设 HEAD 仍停留在上一次已知位置。
+
+至少先看最近几条提交历史（如 `git log --oneline -5`），确认将被撤销或改写的 commit id 的确就是目标 commit；如果对话中断过、用户自己执行过命令，或前一步不是我刚完成的，更要重新确认一次当前状态。
+
+**IMPORTANT** <br> 执行任何破坏性 Git 操作前，必须重新检查当前状态并确认目标 commit，禁止基于上一次已知状态直接操作。
+
 # general development specifications
 
 use **Enums** for state variables & mode switches

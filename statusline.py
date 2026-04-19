@@ -12,7 +12,7 @@ YELLOW  = '\033[0;33m'
 MAGENTA = '\033[0;35m'
 RED     = '\033[0;31m'
 DIM     = '\033[2m'
-BLUE    = '\033[0;34m'
+SKYBLUE = '\033[38;5;39m'
 RESET   = '\033[0m'
 
 raw = sys.stdin.read().strip()
@@ -87,8 +87,8 @@ if in_tok is not None and out_tok is not None:
     parts.append(f"{DIM}{tok_str}{RESET}")
 
 # Time
-current_time = datetime.now().strftime("%H:%M:%S")
-parts.append(f"{CYAN}{current_time}{RESET}")
+current_time = datetime.now().strftime("%m/%d %H:%M:%S")
+parts.append(f"{SKYBLUE}{current_time}{RESET}")
 
 sep = f"{DIM} | {RESET}"
 print(sep.join(parts))

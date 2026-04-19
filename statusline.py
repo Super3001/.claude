@@ -12,8 +12,9 @@ YELLOW  = '\033[0;33m'
 MAGENTA = '\033[0;35m'
 RED     = '\033[0;31m'
 DIM     = '\033[2m'
-SKYBLUE = '\033[38;5;39m'
-RESET   = '\033[0m'
+SKYBLUE    = '\033[38;5;39m'
+BRIGHT_CYAN = '\033[1;36m'
+RESET       = '\033[0m'
 
 raw = sys.stdin.read().strip()
 if not raw:
@@ -29,7 +30,7 @@ parts = []
 # Model
 model = (data.get('model') or {}).get('display_name', '')
 if model:
-    parts.append(f"{CYAN}{model}{RESET}")
+    parts.append(f"{BRIGHT_CYAN}{model}{RESET}")
 
 # User
 user = os.environ.get('USERNAME') or os.environ.get('USER', '')
@@ -88,7 +89,7 @@ if in_tok is not None and out_tok is not None:
 
 # Time
 current_time = datetime.now().strftime("%m/%d %H:%M:%S")
-parts.append(f"{SKYBLUE}{current_time}{RESET}")
+parts.append(f"\033[0;36m{current_time}{RESET}")
 
 sep = f"{DIM} | {RESET}"
 print(sep.join(parts))

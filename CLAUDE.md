@@ -86,6 +86,8 @@ use **Enums** for state variables & mode switches
 
 in python, use `IntEnum` class
 
+写脚本时，除了主题功能，额外设计一个--check功能，用于在实际运行前进行前置环境有效性的检查，或者数据有效性的检查和报告
+
 # tool instructions
 
 *note these tool should be available in system path*

@@ -1,9 +1,6 @@
 ---
 name: record
-description: >
-  This skill should be used when the user asks to "record", "write down", "记一下",
-  "写下来", or invokes /record. Quickly write a single piece of knowledge to
-  ~/.agent/ at any point during a session. For session-level recap, use /persist instead.
+description: This skill should be used when the user asks to "record", "write down", "记一下", "写下来", or invokes /record. Quickly write a single piece of knowledge to ~/.agent/ at any point during a session. For session-level recap, use /persist instead.
 ---
 
 # Record

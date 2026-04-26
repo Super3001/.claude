@@ -14,9 +14,11 @@ one fact, one fix, one observation, right now.
 
 1. Parse user input for the specific item to record.
 2. Scan `~/.agent/` for semantic overlap. If found, ask: "和 `xxx.md` 有重叠，合并还是新建？"
-3. Choose a filename with the **`record-` prefix** that reflects both **content summary** and **scope**.
-   Good: `record-env-setup-uv-path.md`, `record-cangjie-testing-lessons.md`
-   Bad: `setup.md`, `config.md`, `env-setup-uv-path.md` (missing `record-` prefix)
+3. Choose a filename that reflects both **content summary** and **scope**, using the appropriate prefix:
+   - **`record-`** for completed facts, fixes, observations, and lessons learned.
+   - **`todo-`** for planned but not yet done tasks, improvements, or ideas.
+   Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`
+   Bad: `setup.md`, `config.md`, `env-setup-uv-path.md` (missing prefix)
    **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
 4. Write the content. Be brief and actionable.
 5. Git commit:

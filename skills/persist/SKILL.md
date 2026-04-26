@@ -21,12 +21,16 @@ look back at what happened, extract what's worth keeping.
 3. Choose a filename that reflects both **content summary** and **scope**.
    Good: `knowledge-future-skill-todos.md`, `wiki-llm-wiki-deployment-design.md`
    Bad: `todos.md`, `design.md` (scope unclear)
-4. Write the content. Structure:
-   - Context (1-2 lines: what was the session about)
+4. **One file, one topic.** Split session learnings into separate files by topic.
+   Do not bundle unrelated knowledge into one recap file.
+   Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).
+   For now, keep files flat in `~/.agent/`.
+5. Write each file. Structure per file:
+   - Context (1-2 lines: what was this about)
    - Key learnings (bulleted, actionable)
    - Decisions made (with rationale)
    - Open items (if any)
-5. Git commit:
+6. Git commit:
    ```bash
    cd ~/.agent && git add -A && git commit -m "<descriptive message>"
    ```
@@ -34,6 +38,9 @@ look back at what happened, extract what's worth keeping.
 
 ## Content Guidelines
 
+- **One file, one topic.** Do not bundle unrelated knowledge into one recap file.
+  Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).
+  For now, keep files flat in `~/.agent/`.
 - Same language as user's input.
 - Focus on **why**, not just **what** — rationale has more replay value than facts.
 - Be concise — no fluff, no repetition.

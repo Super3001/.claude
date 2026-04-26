@@ -26,7 +26,10 @@ one fact, one fix, one observation, right now.
 
 ## Content Guidelines
 
+- **One file, one topic.** Do not bundle unrelated knowledge into one file.
+  Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).
+  For now, keep files flat in `~/.agent/` — one fact per file is better than one file per session.
 - Same language as user's input.
-- Concise — one topic per file.
+- Concise — no fluff, no repetition.
 - Include exact commands, file paths, or code.
 - If appending to an existing file, read first, then edit.

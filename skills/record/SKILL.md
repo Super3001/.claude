@@ -17,12 +17,14 @@ one fact, one fix, one observation, right now.
 3. Choose a filename that reflects both **content summary** and **scope**.
    Good: `env-setup-uv-path.md`, `editor-vscode-based-config.md`
    Bad: `setup.md`, `config.md` (scope unclear)
+   **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
 4. Write the content. Be brief and actionable.
 5. Git commit:
    ```bash
    cd ~/.agent && git add -A && git commit -m "<descriptive message>"
    ```
    If commit fails (not a git repo), run `git init` and retry.
+   If the commit is purely a rename of the previous commit's file, use `--amend` instead of a new commit.
 
 ## Content Guidelines
 

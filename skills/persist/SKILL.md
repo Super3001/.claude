@@ -21,6 +21,7 @@ look back at what happened, extract what's worth keeping.
 3. Choose a filename that reflects both **content summary** and **scope**.
    Good: `knowledge-future-skill-todos.md`, `wiki-llm-wiki-deployment-design.md`
    Bad: `todos.md`, `design.md` (scope unclear)
+   **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
 4. **One file, one topic.** Split session learnings into separate files by topic.
    Do not bundle unrelated knowledge into one recap file.
    Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).
@@ -35,6 +36,7 @@ look back at what happened, extract what's worth keeping.
    cd ~/.agent && git add -A && git commit -m "<descriptive message>"
    ```
    If commit fails (not a git repo), run `git init` and retry.
+   If the commit is purely a rename of the previous commit's file, use `--amend` instead of a new commit.
 
 ## Content Guidelines
 

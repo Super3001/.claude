@@ -1,4 +1,4 @@
-# general principles
+# General Principles
 
 **IMPORTANT** <br> 通过命令或者Python脚本覆盖文件，例如`command > a.log`, `python3 regenerate.py`等之前，**必须**先备份旧文件，以供错误恢复。
 
@@ -6,7 +6,7 @@
 
 **IMPORTANT** <br> 当用户说“变为干净状态”“清理到可用状态”时，默认含义是**没有改到一半、没有不可运行的残缺状态**，而不是清空工作区修改或恢复到 `HEAD`。除非用户明确要求回退/清空修改，否则禁止用 `git restore`、`git checkout --`、`git reset` 等方式抹掉本地修改。
 
-# general 意图识别
+# General 意图识别
 
 区分一个任务需要 (1) 直接通过命令行命令执行 (2) 创建一个新脚本执行，并保存该脚本 (3) 修改项目中的现有代码，并执行
 
@@ -14,7 +14,7 @@
 
 如果这个任务后续可能有多次
 
-# coding principles
+# Coding Principles
 
 Derived from Andrej Karpathy's observations on LLM coding pitfalls.
 
@@ -88,15 +88,15 @@ Strong success criteria let you loop independently. Weak criteria (“make it wo
 
 The test: Removing a name should be a deliberate decision with a reason, not the default.
 
-# safety & security rules
+# Safety & Security Rules
 
-## git safety
+## Git Safety
 
 执行 `git reset`、`git rebase` 等破坏性 Git 操作前，必须先检查当前状态，不得假设 HEAD 仍停留在上一次已知位置。
 
 至少先看最近几条提交历史（如 `git log --oneline -5`），确认将被撤销或改写的 commit id 的确就是目标 commit；如果对话中断过、用户自己执行过命令，或前一步不是我刚完成的，更要重新确认一次当前状态。
 
-# general development specifications
+# General Development Specifications
 
 use **Enums** for state variables & mode switches
 
@@ -104,13 +104,13 @@ in python, use `IntEnum` class
 
 写脚本时，除了主题功能，额外设计一个--check功能，用于在实际运行前进行前置环境有效性的检查，或者数据有效性的检查和报告
 
-# tool instructions
+# Tool Instructions
 
 *note these tool should be available in system path*
 
 nb2py: transform jupyter notebook to single python file
 
-# user profile
+# User Profile
 
 ## 用户背景
 出生于2003年5月，计算机专业本科。曾就读于人大附中、北京理工大学，现在在华为练秋湖研发中心上班，从事通用软件开发工作，最近关注于AI应用层软件开发。
@@ -138,3 +138,4 @@ nb2py: transform jupyter notebook to single python file
 - 澄清需求时直接在对话中反问，不要为此使用 AskUserQuestion 工具。
 
 @RTK.md
+

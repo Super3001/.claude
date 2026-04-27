@@ -17,7 +17,8 @@ one fact, one fix, one observation, right now.
 3. Choose a filename that reflects both **content summary** and **scope**, using the appropriate prefix:
    - **`record-`** for completed facts, fixes, observations, and lessons learned.
    - **`todo-`** for planned but not yet done tasks, improvements, or ideas.
-   Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`
+   - **`lore-`** for elevated general principles, methodologies, and distilled wisdom.
+   Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
    Bad: `setup.md`, `config.md`, `env-setup-uv-path.md` (missing prefix)
    **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
 4. Write the content. Be brief and actionable.

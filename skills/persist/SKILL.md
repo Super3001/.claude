@@ -18,9 +18,13 @@ look back at what happened, extract what's worth keeping.
    - New discoveries or insights
    - Anything the user explicitly asked to remember
 2. Scan `~/.agent/` for semantic overlap. If found, ask: "和 `xxx.md` 有重叠，合并还是新建？"
-3. Choose a filename that reflects both **content summary** and **scope**.
-   Good: `knowledge-future-skill-todos.md`, `wiki-llm-wiki-deployment-design.md`
-   Bad: `todos.md`, `design.md` (scope unclear)
+3. Choose a filename that reflects both **content summary** and **scope**, using the appropriate prefix:
+   - **`record-`** for completed facts, fixes, observations, and lessons learned.
+   - **`todo-`** for planned but not yet done tasks, improvements, or ideas.
+   - **`lore-`** for elevated general principles, methodologies, and distilled wisdom.
+   - **`persist-`** for session-level architecture or design records.
+   Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
+   Bad: `todos.md`, `design.md` (missing prefix, scope unclear)
    **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
 4. **One file, one topic.** Split session learnings into separate files by topic.
    Do not bundle unrelated knowledge into one recap file.

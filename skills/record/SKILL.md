@@ -20,7 +20,7 @@ one fact, one fix, one observation, right now.
    - **`lore-`** for elevated general principles, methodologies, and distilled wisdom.
    Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
    Bad: `setup.md`, `config.md`, `env-setup-uv-path.md` (missing prefix)
-   **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
+   **Propose the filename to the user before writing.** Wait for confirmation or adjustment. User reply '1' means confirmation.
 4. Write the content. Be brief and actionable.
 5. Git commit:
    ```bash

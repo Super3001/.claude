@@ -26,7 +26,7 @@ look back at what happened, extract what's worth keeping.
    - **`session-`** for session-level comprehensive records.
    Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
    Bad: `todos.md`, `design.md` (missing prefix, scope unclear)
-   **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
+   **Propose the filename to the user before writing.** Wait for confirmation or adjustment. User reply '1' means confirmation.
 4. **One file, one topic.** Split session learnings into separate files by topic.
    Do not bundle unrelated knowledge into one recap file.
    Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).

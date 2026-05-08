@@ -1,4 +1,4 @@
-# general principles
+# General Principles
 
 **IMPORTANT** <br> 通过命令或者Python脚本覆盖文件，例如`command > a.log`, `python3 regenerate.py`等之前，**必须**先备份旧文件，以供错误恢复。
 
@@ -6,7 +6,7 @@
 
 **IMPORTANT** <br> 当用户说“变为干净状态”“清理到可用状态”时，默认含义是**没有改到一半、没有不可运行的残缺状态**，而不是清空工作区修改或恢复到 `HEAD`。除非用户明确要求回退/清空修改，否则禁止用 `git restore`、`git checkout --`、`git reset` 等方式抹掉本地修改。
 
-# general 意图识别
+# General 意图识别
 
 区分一个任务需要 (1) 直接通过命令行命令执行 (2) 创建一个新脚本执行，并保存该脚本 (3) 修改项目中的现有代码，并执行
 
@@ -14,7 +14,7 @@
 
 如果这个任务后续可能有多次
 
-# coding principles
+# Coding Principles
 
 Derived from Andrej Karpathy's observations on LLM coding pitfalls.
 
@@ -88,15 +88,15 @@ Strong success criteria let you loop independently. Weak criteria (“make it wo
 
 The test: Removing a name should be a deliberate decision with a reason, not the default.
 
-# safety & security rules
+# Safety & Security Rules
 
-## git safety
+## Git Safety
 
 执行 `git reset`、`git rebase` 等破坏性 Git 操作前，必须先检查当前状态，不得假设 HEAD 仍停留在上一次已知位置。
 
 至少先看最近几条提交历史（如 `git log --oneline -5`），确认将被撤销或改写的 commit id 的确就是目标 commit；如果对话中断过、用户自己执行过命令，或前一步不是我刚完成的，更要重新确认一次当前状态。
 
-# general development specifications
+# General Development Specifications
 
 use **Enums** for state variables & mode switches
 
@@ -104,145 +104,11 @@ in python, use `IntEnum` class
 
 写脚本时，除了主题功能，额外设计一个--check功能，用于在实际运行前进行前置环境有效性的检查，或者数据有效性的检查和报告
 
-# tool instructions
+# Tool Instructions
 
 *note these tool should be available in system path*
 
 nb2py: transform jupyter notebook to single python file
-
-<!-- rtk-instructions v2 -->
-# RTK (Rust Token Killer) - Token-Optimized Commands
-
-## Golden Rule
-
-**Always prefix commands with `rtk`**. If RTK has a dedicated filter, it uses it. If not, it passes through unchanged. This means RTK is always safe to use.
-
-**Important**: Even in command chains with `&&`, use `rtk`:
-```bash
-# ❌ Wrong
-git add . && git commit -m "msg" && git push
-
-# ✅ Correct
-rtk git add . && rtk git commit -m "msg" && rtk git push
-```
-
-## RTK Commands by Workflow
-
-### Build & Compile (80-90% savings)
-```bash
-rtk cargo build         # Cargo build output
-rtk cargo check         # Cargo check output
-rtk cargo clippy        # Clippy warnings grouped by file (80%)
-rtk tsc                 # TypeScript errors grouped by file/code (83%)
-rtk lint                # ESLint/Biome violations grouped (84%)
-rtk prettier --check    # Files needing format only (70%)
-rtk next build          # Next.js build with route metrics (87%)
-```
-
-### Test (90-99% savings)
-```bash
-rtk cargo test          # Cargo test failures only (90%)
-rtk vitest run          # Vitest failures only (99.5%)
-rtk playwright test     # Playwright failures only (94%)
-rtk test <cmd>          # Generic test wrapper - failures only
-```
-
-### Git (59-80% savings)
-```bash
-rtk git status          # Compact status
-rtk git log             # Compact log (works with all git flags)
-rtk git diff            # Compact diff (80%)
-rtk git show            # Compact show (80%)
-rtk git add             # Ultra-compact confirmations (59%)
-rtk git commit          # Ultra-compact confirmations (59%)
-rtk git push            # Ultra-compact confirmations
-rtk git pull            # Ultra-compact confirmations
-rtk git branch          # Compact branch list
-rtk git fetch           # Compact fetch
-rtk git stash           # Compact stash
-rtk git worktree        # Compact worktree
-```
-
-Note: Git passthrough works for ALL subcommands, even those not explicitly listed.
-
-### GitHub (26-87% savings)
-```bash
-rtk gh pr view <num>    # Compact PR view (87%)
-rtk gh pr checks        # Compact PR checks (79%)
-rtk gh run list         # Compact workflow runs (82%)
-rtk gh issue list       # Compact issue list (80%)
-rtk gh api              # Compact API responses (26%)
-```
-
-### JavaScript/TypeScript Tooling (70-90% savings)
-```bash
-rtk pnpm list           # Compact dependency tree (70%)
-rtk pnpm outdated       # Compact outdated packages (80%)
-rtk pnpm install        # Compact install output (90%)
-rtk npm run <script>    # Compact npm script output
-rtk npx <cmd>           # Compact npx command output
-rtk prisma              # Prisma without ASCII art (88%)
-```
-
-### Files & Search (60-75% savings)
-```bash
-rtk ls <path>           # Tree format, compact (65%)
-rtk read <file>         # Code reading with filtering (60%)
-rtk grep <pattern>      # Search grouped by file (75%)
-rtk find <pattern>      # Find grouped by directory (70%)
-```
-
-### Analysis & Debug (70-90% savings)
-```bash
-rtk err <cmd>           # Filter errors only from any command
-rtk log <file>          # Deduplicated logs with counts
-rtk json <file>         # JSON structure without values
-rtk deps                # Dependency overview
-rtk env                 # Environment variables compact
-rtk summary <cmd>       # Smart summary of command output
-rtk diff                # Ultra-compact diffs
-```
-
-### Infrastructure (85% savings)
-```bash
-rtk docker ps           # Compact container list
-rtk docker images       # Compact image list
-rtk docker logs <c>     # Deduplicated logs
-rtk kubectl get         # Compact resource list
-rtk kubectl logs        # Deduplicated pod logs
-```
-
-### Network (65-70% savings)
-```bash
-rtk curl <url>          # Compact HTTP responses (70%)
-rtk wget <url>          # Compact download output (65%)
-```
-
-### Meta Commands
-```bash
-rtk gain                # View token savings statistics
-rtk gain --history      # View command history with savings
-rtk discover            # Analyze Claude Code sessions for missed RTK usage
-rtk proxy <cmd>         # Run command without filtering (for debugging)
-rtk init                # Add RTK instructions to CLAUDE.md
-rtk init --global       # Add RTK to ~/.claude/CLAUDE.md
-```
-
-## Token Savings Overview
-
-| Category | Commands | Typical Savings |
-|----------|----------|-----------------|
-| Tests | vitest, playwright, cargo test | 90-99% |
-| Build | next, tsc, lint, prettier | 70-87% |
-| Git | status, log, diff, add, commit | 59-80% |
-| GitHub | gh pr, gh run, gh issue | 26-87% |
-| Package Managers | pnpm, npm, npx | 70-90% |
-| Files | ls, read, grep, find | 60-75% |
-| Infrastructure | docker, kubectl | 85% |
-| Network | curl, wget | 65-70% |
-
-Overall average: **60-90% token reduction** on common development operations.
-<!-- /rtk-instructions -->
 
 # User Profile
 
@@ -270,3 +136,6 @@ Overall average: **60-90% token reduction** on common development operations.
 - 用户举例子是为了传递方法、模式或判断标准，不是让你照搬具体案例。沉淀到记忆或文档中的应是更高维的原则和抽象。
 - 需求和技术方案都明确后，先用 markdown 记录再编码。记录放在 `.agent/` 目录下，带清晰时间戳。
 - 澄清需求时直接在对话中反问，不要为此使用 AskUserQuestion 工具。
+
+@RTK.md
+

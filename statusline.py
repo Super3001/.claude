@@ -44,23 +44,45 @@ def write_weather_cache(now, value):
     except Exception:
         pass
 
-def format_weather_text(raw_weather):
-    parts = [segment.strip() for segment in raw_weather.split(':', 1)]
-    if len(parts) != 2:
-        return raw_weather
+def get_weather_emoji(code):
+    emoji_map = {
+        113: '☀️', 116: '⛅', 119: '☁️', 122: '☁️',
+        143: '🌫️', 176: '🌦️', 179: '🌧️', 182: '❄️',
+        185: '❄️', 200: '⛈️', 227: '🌨️', 230: '❄️',
+        248: '🌫️', 260: '🌫️', 263: '🌦️', 266: '🌧️',
+        281: '🌧️', 284: '🌧️', 293: '🌦️', 296: '🌧️',
+        299: '🌧️', 302: '⛈️', 305: '⛈️', 308: '⛈️',
+        311: '🌨️', 314: '🌨️', 317: '🌨️', 320: '🌨️',
+        323: '🌨️', 326: '🌨️', 329: '🌨️', 332: '❄️',
+        335: '🌨️', 338: '❄️', 350: '❄️', 353: '🌨️',
+        356: '⛈️', 359: '⛈️', 362: '🌨️', 365: '🌨️',
+        368: '🌨️', 371: '❄️', 374: '❄️', 377: '❄️',
+        386: '⛈️', 389: '⛈️', 392: '🌨️', 395: '❄️',
+    }
+    return emoji_map.get(code, '')
 
-    _, condition = parts
-    segments = condition.split()
-    if len(segments) < 2:
-        return raw_weather
+def format_weather_json(weather_data):
+    try:
+        current = weather_data['current_condition'][0]
+        today = weather_data['weather'][0]
 
-    temp = segments[-1]
-    emoji = segments[-2]
-    text = ' '.join(segments[:-2]).lower()
-    if not text:
-        return raw_weather
+        temp = current['temp_C']
+        feels = current['FeelsLikeC']
+        high = today['maxtempC']
+        low = today['mintempC']
+        wind_speed = current['windspeedKmph']
+        wind_dir = current['winddir16Point']
+        code = int(current['weatherCode'])
 
-    return f'{WEATHER_LABEL}: {text} {emoji}  {temp}'
+        emoji = get_weather_emoji(code)
+        temp_str = f'+{temp}°C(+{feels}°C)'
+        hl_str = f'{high}/{low}'
+        wind_str = f'{wind_speed}km/h {wind_dir}'
+        desc = current['weatherDesc'][0]['value'].lower()
+
+        return f'{WEATHER_LABEL}: {desc} {emoji} {temp_str} {hl_str} {wind_str}'
+    except Exception:
+        return ''
 
 
 def fetch_weather():
@@ -69,11 +91,12 @@ def fetch_weather():
     if cached:
         return cached
 
-    url = f'https://wttr.in/{WEATHER_COORDS}?format=%l:+%C+%c+%t'
+    url = f'https://wttr.in/{WEATHER_COORDS}?format=j1'
     try:
         request = urllib.request.Request(url, headers={'User-Agent': 'curl/8.0'})
         with urllib.request.urlopen(request, timeout=2) as response:
-            weather = format_weather_text(response.read().decode('utf-8').strip())
+            weather_data = json.loads(response.read().decode('utf-8').strip())
+            weather = format_weather_json(weather_data)
         if weather:
             write_weather_cache(now, weather)
             return weather

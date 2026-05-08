@@ -1,6 +1,6 @@
 ---
 name: persist
-description: This skill should be used when the user asks to "persist", "recap", "记录一下这个session", "总结一下", or invokes /persist. Reviews the current session and persists key learnings, decisions, and experiences to ~/.agent/. For quick single-item writes during a session, use /record instead.
+description: This skill should be used when the user asks to "persist", "recap", "记录一下这个session", "总结一下", "暂时先这样", "下次再说", "会话先这样了", or invokes /persist. Reviews the current session and persists key learnings, decisions, and experiences to ~/.agent/. For quick single-item writes during a session, use /record instead. After writing, if root-level .md files in ~/.agent/ exceed 20, automatically invoke /sort.
 ---
 
 # Persist
@@ -22,7 +22,8 @@ look back at what happened, extract what's worth keeping.
    - **`record-`** for completed facts, fixes, observations, and lessons learned.
    - **`todo-`** for planned but not yet done tasks, improvements, or ideas.
    - **`lore-`** for elevated general principles, methodologies, and distilled wisdom.
-   - **`persist-`** for session-level architecture or design records.
+   - **`design-`** for specific design documents and architecture proposals.
+   - **`session-`** for session-level comprehensive records.
    Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
    Bad: `todos.md`, `design.md` (missing prefix, scope unclear)
    **Propose the filename to the user before writing.** Wait for confirmation or adjustment.

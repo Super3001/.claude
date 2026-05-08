@@ -1,6 +1,6 @@
 ---
 name: record
-description: This skill should be used when the user asks to "record", "write down", "记一下", "写下来", or invokes /record. Quickly write a single piece of knowledge to ~/.agent/ at any point during a session. For session-level recap, use /persist instead.
+description: This skill should be used when the user asks to "record", "write down", "记一下", "写下来", "可以了", "做得不错", "记录一下", "干得漂亮", "太对了", or invokes /record. Quickly write a single piece of knowledge to ~/.agent/ at any point during a session. For session-level recap, use /persist instead. After writing, if root-level .md files in ~/.agent/ exceed 20, automatically invoke /sort.
 ---
 
 # Record
@@ -18,6 +18,8 @@ one fact, one fix, one observation, right now.
    - **`record-`** for completed facts, fixes, observations, and lessons learned.
    - **`todo-`** for planned but not yet done tasks, improvements, or ideas.
    - **`lore-`** for elevated general principles, methodologies, and distilled wisdom.
+   - **`design-`** for specific design documents and architecture proposals.
+   - **`session-`** for session-level comprehensive records.
    Good: `record-env-setup-uv-path.md`, `todo-statusline-weather-enhancement.md`, `lore-knowledge-base-file-naming-philosophy.md`
    Bad: `setup.md`, `config.md`, `env-setup-uv-path.md` (missing prefix)
    **Propose the filename to the user before writing.** Wait for confirmation or adjustment.
@@ -33,7 +35,7 @@ one fact, one fix, one observation, right now.
 
 - **One file, one topic.** Do not bundle unrelated knowledge into one file.
   Sorting and organizing into directories is handled by future skills (/sort, /weave, /bind, /tidy).
-  For now, keep files flat in `~/.agent/` — one fact per file is better than one file per session.
+  For now, keep files flat in `~/.agent/`.
 - Same language as user's input.
 - Concise — no fluff, no repetition.
 - Include exact commands, file paths, or code.

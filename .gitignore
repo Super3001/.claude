@@ -16,3 +16,5 @@ history.jsonl
 mcp-needs-auth-cache.json
 settings*.json
 stats-cache.json
+usage-data
+__pycache__

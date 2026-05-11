@@ -13,6 +13,17 @@
 **add bash - native(python) path difference notice**
 in Windows platform, Bash /c/Users/... paths don't resolve in Python — use os.path.expandvars(r"%LOCALAPPDATA%\...") or full C:\... paths instead.
 
+
+# Conventions
+
+In both Windows/Linux devices of mine:
+
+$HOME envVar means ~
+$ROOT_DIR envVar should exist
+
+Windows only:
+Softwares installed at 
+
 # General 意图识别
 
 区分一个任务需要 (1) 直接通过命令行命令执行 (2) 创建一个新脚本执行，并保存该脚本 (3) 修改项目中的现有代码，并执行

@@ -122,11 +122,15 @@ in python, use `IntEnum` class
 
 写脚本时，除了主题功能，额外设计一个--check功能，用于在实际运行前进行前置环境有效性的检查，或者数据有效性的检查和报告
 
+# document principles
+
+When a user collaborates with you to edit a file and modifies or deletes parts of the content you wrote, it means the user no longer needs those parts. Even if the user later asks to expand the content, do not add those deleted words and sentences back.
+
 # Tool Instructions
 
-*note these tool should be available in system path*
+refer to usercmd at $MAIN_ROOT/dev/usercmd/README.md (where MAIN_ROOT is an envVar)
 
-nb2py: transform jupyter notebook to single python file
+many user commands should be available in PATH (installed by uv tool install -e)
 
 <!-- rtk-instructions v2 -->
 # RTK (Rust Token Killer) - Token-Optimized Commands

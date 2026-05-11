@@ -104,6 +104,47 @@ def fetch_weather():
         return cached
     return ''
 
+# --- Caveman mode indicator ---
+# Flag file written by caveman plugin hooks (mode-tracker / activate).
+# Security: refuse symlinks, whitelist contents, strip control chars.
+_config_dir = os.environ.get('CLAUDE_CONFIG_DIR')
+if _config_dir:
+    CAVEMAN_FLAG = Path(_config_dir) / '.caveman-active'
+else:
+    CAVEMAN_FLAG = Path.home() / '.claude' / '.caveman-active'
+
+CAVEMAN_WHITELIST = {
+    'off', 'lite', 'full', 'ultra',
+    'wenyan-lite', 'wenyan', 'wenyan-full', 'wenyan-ultra',
+}
+
+CAVEMAN_LABELS = {
+    'lite': 'L', 'full': 'F', 'ultra': 'U',
+    'wenyan-lite': 'WL', 'wenyan': 'WF', 'wenyan-full': 'WF', 'wenyan-ultra': 'WU',
+}
+
+BONE = '\033[38;5;172m'
+
+def get_caveman_mode():
+    try:
+        if CAVEMAN_FLAG.is_symlink():
+            return ''
+    except Exception:
+        pass
+    if not CAVEMAN_FLAG.is_file():
+        return ''
+    try:
+        raw = CAVEMAN_FLAG.read_text(encoding='utf-8').strip()[:64]
+    except Exception:
+        return ''
+    mode = ''.join(c for c in raw if c.isalnum() or c == '-').lower()
+    if mode not in CAVEMAN_WHITELIST:
+        return ''
+    if mode == 'off':
+        return ''
+    label = CAVEMAN_LABELS.get(mode, mode[0].upper())
+    return f"{BONE}bone{label}{RESET}"
+
 raw = sys.stdin.read().strip()
 if not raw:
     sys.exit(0)
@@ -119,6 +160,11 @@ parts = []
 model = (data.get('model') or {}).get('display_name', '')
 if model:
     parts.append(f"{BRIGHT_CYAN}{model}{RESET}")
+
+# Caveman mode
+caveman = get_caveman_mode()
+if caveman:
+    parts.append(caveman)
 
 # User
 user = os.environ.get('USERNAME') or os.environ.get('USER', '')

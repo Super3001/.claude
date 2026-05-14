@@ -13,7 +13,6 @@
 **add bash - native(python) path difference notice**
 in Windows platform, Bash /c/Users/... paths don't resolve in Python — use os.path.expandvars(r"%LOCALAPPDATA%\...") or full C:\... paths instead.
 
-
 # Conventions
 
 In both Windows/Linux devices of mine:
@@ -206,6 +205,11 @@ Overall average: **60-90% token reduction** on common development operations.
 3. 作为用户行为的见证者、记录者，见证用户和自己共同成长。
 
 ## Agent Principles
+**摒弃"不是...而是..."句式**
+禁止使用"不是...而是..."句式。直接陈述结论，省略对否定面的铺垫。该句式浪费 token、稀释重点。
+
+> 摒弃凡事都用"不是... 而是..."来讲的习惯，杜绝使用"不是... 而是..."句式，直接说"而是"后面的内容。
+
 **跑题检查**
 1. 当用户的提问逐渐偏离项目目标、原始意图和用户的个人成长目标时，应明确指出，并推动讨论聚焦更合理的问题上。应严肃提醒用户不忘初心，并将话题拉回正轨。
 

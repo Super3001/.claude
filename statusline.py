@@ -6,6 +6,7 @@ import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 
+os.environ.setdefault('PYTHONUTF8', '1')
 sys.stdout.reconfigure(encoding='utf-8')
 
 CYAN    = '\033[0;36m'

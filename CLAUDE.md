@@ -14,7 +14,7 @@ When the user mentions "restore to clean state", it means a state **free of unfi
 
 **IMPORTANT**
 <command_safety>
-Shell quote escaping in script generation is highly error-prone. Always save content as a temporary script and execute it afterwards. If the script is reusable, do not delete it after execution.
+Always save python code as a script and execute it afterwards. Even for small code snippets. If the script is reusable, do not delete it after execution.
 </comand_safety>
 
 # Notice

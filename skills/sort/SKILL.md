@@ -40,6 +40,13 @@ Organize flat files in `~/.agent/` into topic-based subdirectories.
 
 6. **Verify.** Show final directory tree. Confirm all files accounted for.
 
+7. **Write sort history.** After moves are committed, update `~/.agent/sort-history.html`:
+   - If the file does not exist, create it from the full HTML skeleton.
+   - If it exists, read it and insert a new sort-entry div after the summary bar (newest first).
+   - Each entry records: timestamp, sort ID, scheme description, files moved (from → to), final directory tree.
+   - Update the summary bar totals (total sorts, total files moved, total directories).
+   - Full HTML format specification in **`references/sort-history-html.md`**.
+
 ## Existing Directory Structure
 
 Current known directories in `~/.agent/` (may evolve):

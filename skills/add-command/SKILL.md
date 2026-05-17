@@ -1,70 +1,32 @@
 ---
 name: add-command
-description: This skill should be used when the user asks to "add a new command", "create a script", "add a tool", "write a new utility", "add an alias command", or wants to create a new CLI command in the usercmd project.
+description: This skill should be used when the user asks to "add a new command", "create a script", "add a tool", "write a new utility", "add an alias command", "modify a command", "change a command", or wants to create/modify a CLI command in the usercmd project.
 ---
 
-# Add Command
+# Add / Modify Command
 
-Add a new CLI command to the usercmd project.
+Add a new CLI command or modify an existing one in the usercmd project.
 
-## Usercmd dir
+## Locate USERCMD_DIR
 
-USERCMD_DIR defaults to `C:/Dev/usercmd`. If that path does not exist, search for the correct usercmd directory (common alternatives: `M:/Dev/usercmd`). Ask user to confirm if a different dir is found.
+Resolution order:
+1. `$MAIN_ROOT/Dev/usercmd` (where `MAIN_ROOT` is an environment variable)
+2. Search for `**/usercmd` if step 1 fails
 
-## Procedure
+If found path differs from expected, ask user to confirm.
 
-### 1. Determine script name
+## Procedure & Conventions
 
-Derive two names from the user's request:
-- **File name**: `scripts/<snake_case>.py`
-- **Command name**: kebab-case (registered in pyproject.toml)
+### Adding a new command
 
-Example: "add a which command" → file `scripts/which.py`, command `which`
+Follow the **"Adding a new tool"** section in the project's `CLAUDE.md` for:
+- Full procedure (naming → create → register → install)
+- Coding conventions
+- Completion checklist
 
-### 2. Create the Python script
+### Modifying an existing command
 
-Write `scripts/<snake_case>.py` following this pattern:
-
-```python
-import sys
-
-
-def main():
-    # logic here
-    pass
-
-
-if __name__ == "__main__":
-    main()
-```
-
-Use only standard library unless the functionality requires it. If a new dependency is needed, add it to `dependencies` in pyproject.toml.
-
-Additional conventions (from CLAUDE.md):
-- Use `IntEnum` for state variables and mode switches
-- Include a `--check` flag for pre-run environment/data validation when applicable
-
-### 3. Register entry point
-
-Add one line to `[project.scripts]` in pyproject.toml:
-
-```
-<kebab-case> = "scripts.<snake_case>:main"
-```
-
-Keep the block alphabetically sorted.
-
-### 4. Install globally
-
-```bash
-uv tool install --editable .
-```
-
-This makes the new command available system-wide. Existing scripts remain functional; only new entry points get registered.
-
-## Checklist
-
-Before reporting done, verify:
-- `scripts/<name>.py` exists with a `main()` function
-- pyproject.toml `[project.scripts]` has the new entry, alphabetically sorted
-- `uv tool install --editable .` succeeds and lists the new executable
+1. Locate script in `scripts/` directory
+2. Read current implementation
+3. Apply requested changes following project conventions (see `CLAUDE.md`)
+4. Run `install-usercmd -f` if entry point signature changed

@@ -1,7 +1,15 @@
 # General Safety Rules
 <file_safety>
-**IMPORTANT**
+**IMPORTANT — Backup before overwrite**
 Before overwriting files via commands or scripts such as `command > a.log` and `python3 regenerate.py`, **always back up old files first** for error recovery.
+
+**IMPORTANT — Destructive operations require backup + confirm**
+Any destructive operation (delete, overwrite, truncate, drop) on user data requires:
+1. **Back up first** — copy to sidecar path, or verify git has clean commit of current state
+2. **Confirm with user** — unless target is ephemeral cache (build artifacts, `__pycache__`, `node_modules`, `.pytest_cache`)
+
+This applies to: `rm`, `rm -rf`, `del`, `Remove-Item`, `git reset --hard`, `git clean -f`, `git checkout -- <file>`, `> file` (truncate), and any script that overwrites or deletes existing files.
+
 </file_safety>
 
 <git_safety>

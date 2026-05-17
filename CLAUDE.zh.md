@@ -40,72 +40,67 @@ Softwares installed at $MAIN_ROOT/Soft/
 
 # Coding Principles
 
-DBehavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+除非显式覆盖，否则本规则适用于本项目中的所有任务。
+核心倾向：非琐碎工作，谨慎优先于速度；琐碎任务可自主判断处理。
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+## 规则一：先思后码
+明确声明前提假设。遇不确定处，先提问而非盲目猜测。
+存在歧义时，列出多种可能的理解路径。
+若存在更简方案，应果断提出异议。
 
-## 1. Think Before Coding
+## 规则二：简单至上
+仅用最少代码解决问题。杜绝任何"以防万一"的猜测性实现。
+不实现需求之外的功能。不为仅用一次的代码强行设计抽象。
+自检：资深工程师是否会认为此实现过度复杂？若是，立即简化。
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+## 规则三：外科手术式修改
+仅改动绝对必要的部分。仅清理自身引入的冗余或错误。
+切勿"顺手优化"相邻代码、注释或排版格式。
+未出问题的代码绝不重构。严格贴合项目既有风格。
 
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+## 规则四：目标驱动执行
+明确定义成功标准（验收条件）。持续迭代直至验证通过。
+不要死板遵循步骤。定义成功形态并自主迭代。
 
-## 2. Simplicity First
+## 规则五：仅将模型用于判断与裁量场景
+适用于：分类、起草、摘要总结、信息提取。
+切勿用于：路由分发、重试机制、确定性数据转换。
+若常规代码能给出答案，就由代码处理。
 
-**Minimum code that solves the problem. Nothing speculative.**
+## 规则六：Token 预算绝非软性建议
+单任务上限：4,000 Token。单会话上限：30,000 Token。
+接近预算上限时，执行上下文摘要并重置状态。
+主动暴露超支。切勿静默越界消耗。
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+## 规则七：显式暴露冲突，拒绝折中调和
+若两种模式相互矛盾，明确择一（优先更新或更经测试的版本）。
+阐明选择理由。将另一处标记为待清理项。
+切勿强行融合冲突范式。
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+## 规则八：落笔前先阅读
+添加代码前，通读该文件的导出接口、直接调用方及公共工具函数。
+"看似互不干涉"是最危险的判断。若不理解现有代码为何如此设计，先提问。
 
-## 3. Surgical Changes
+## 规则九：测试验证意图，而非仅验证行为
+测试必须体现该行为为何重要（WHY），而非仅断言它做了什么（WHAT）。
+若业务逻辑变更时测试仍不报错，则该测试设计错误。
 
-**Touch only what you must. Clean up only your own mess.**
+## 规则十：关键步骤后强制设立检查点
+总结已完成事项、已验证结果及剩余待办。
+若无法向我清晰描述当前状态，绝不可继续推进。
+若丢失上下文或逻辑偏离，立即暂停并重新声明当前状态。
 
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+## 规则十一：严格遵从代码库既有规范
+在代码库内部：规范一致性 > 个人技术偏好。
+若确信某规范存在实质危害，请显式提出。切勿暗中另起范式。
 
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
+## 规则十二：显式失败
+若有步骤被静默跳过，宣称"已完成"即为错误。
+若有测试被跳过，宣称"测试通过"即为错误。
+默认原则：主动暴露不确定性，绝不掩盖
 
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
-
----
-
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
 # Scripting Principles
-
-## 5. Backward Compatibility on Renames
+## Backward Compatibility on Renames
 
 **When renaming or replacing, keep the old name alongside the new one.**
 

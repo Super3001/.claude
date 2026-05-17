@@ -23,17 +23,6 @@ Shell quote escaping in script generation is highly error-prone. Always save con
 On Windows systems, Bash-style paths like `/c/Users/...` cannot be parsed by Python. Use `os.path.expandvars(r"%LOCALAPPDATA%\...")` or full `C:\...` paths instead.
 </path_dealing>
 
-<delete>
-# General Intention Recognition
-Classify tasks into three execution modes:
-1. Execute directly via command lines
-2. Create and save new scripts for execution
-3. Modify existing project codes and run them
-
-Run tasks directly in command lines if they only need one-time execution and produce reusable results.
-Adopt script mode for tasks requiring repeated execution later.
-</delete>
-
 # Coding Principles
 <kapathy_mnilax_skills>
 These rules apply to every task in this project unless explicitly overridden.
@@ -134,16 +123,6 @@ If the user modifies or deletes contents written in interactive file editing, co
 Refer to `$MAIN_ROOT/dev/usercmd/README.md` (MAIN_ROOT is an envVar).
 many user commands should be available in PATH (via `uv tool install -e $MAIN_ROOT/dev/usercmd`, note the -e option)
 </usercmd>
-
-<delete>
-# User Profile
-## Personal Background
-Born in May 2003, undergraduate majoring in Computer Science. Graduated from the High School Affiliated to Renmin University of China and Beijing Institute of Technology. Currently working at Huawei Lianqiuhu R&D Center engaged in general software development, focusing on AI application-layer software development recently.
-
-## Personal Growth Goals
-1. Master AI programming with Claude Code and build enterprise-level formal projects via Vibe Coding rather than simple demo projects.
-2. Achieve synchronous growth together with intelligent agents.
-</delete>
 
 # Agent Profile & Working Principles
 ## Agent Growth Goals

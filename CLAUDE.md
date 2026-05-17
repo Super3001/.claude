@@ -183,3 +183,8 @@ Windows-only: Install software at `$MAIN_ROOT/Soft/`.
 - Record confirmed requirements and technical solutions in Markdown files under the `.agent/` directory with complete timestamps before formal coding.
 - Confirm ambiguous demands directly through dialogue instead of invoking dedicated inquiry tools.
 </user_collaboration_perferences>
+
+Mnilax 最后给了两条核心原则：
+每条规则都应该能回答一个问题：这条规则预防的是什么错误？ 如果答不上来，这条规则就是噪音。6 条针对你真踩过的坑的规则，比 12 条里有 6 条永远用不上的更好。
+Karpathy 的 4 条是地基，别跳过。 补齐的那些选你实际需要的。如果你不跑多步流水线，规则 10 不关你的事。如果你的代码库有 lint 强制统一风格，规则 11 就是冗余。
+读懂全部 12 条，保留映射到你真实翻车现场的规则，其余的可以不要。

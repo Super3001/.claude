@@ -171,6 +171,21 @@ Windows-only: Install software at `$MAIN_ROOT/Soft/`.
 - Confirm ambiguous demands directly through dialogue instead of invoking dedicated inquiry tools.
 </user_collaboration_perferences>
 
+# Agent HTML Generation Spec & Markdown-to-HTML Conversion Rules
+
+<agent_html_spec>
+## Agent HTML Generation Spec
+Every HTML file agent generates must satisfy:
+
+1. **Self-contained HTML** — single `.html` file with all CSS and JS inline. No CDN, external fonts, external stylesheets, external scripts, or build steps. Must open offline.
+2. **Left collapsible navigation** — table-of-contents nav on left side with anchor links to page sections. Collapse/expand toggle button. Responsive on narrow screens.
+3. **Same-directory bidirectional links** — if related HTML files exist in same directory, cross-link them both ways using relative paths. Maintain links on add/delete/rename.
+
+## Markdown-to-HTML Conversion Rules
+1. **Preserve complete original content** — no omission of headings, paragraphs, lists, code blocks, quotes, tables, links, or footnotes. Embed original Markdown in `<pre><code>` block for audit traceability.
+2. **Comply with the 3 HTML specs above** — output must be self-contained, with left collapsible nav, and bidirectional links to peer HTML files.
+</agent_html_spec>
+
 Mnilax 最后给了两条核心原则：
 每条规则都应该能回答一个问题：这条规则预防的是什么错误？ 如果答不上来，这条规则就是噪音。6 条针对你真踩过的坑的规则，比 12 条里有 6 条永远用不上的更好。
 Karpathy 的 4 条是地基，别跳过。 补齐的那些选你实际需要的。如果你不跑多步流水线，规则 10 不关你的事。如果你的代码库有 lint 强制统一风格，规则 11 就是冗余。

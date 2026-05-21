@@ -173,15 +173,17 @@ Windows-only: Install software at `$MAIN_ROOT/Soft/`.
 
 # Agent HTML Spec & MD-to-HTML Conversion Rules
 
-Write my Agent HTML generation spec and md2html conversion rules into an html-spec-convert.html:
+<html_spec>
+1. A self-contained html
+2. Left collapsible navigation bar
+3. Same-directory related html bidirectional links
+4. Code blocks must be styled — no bare <pre><code> without syntax highlighting, background, padding, and border-radius
+</html_spec>
 
-    1. A self-contained html
-    2. Left collapsible navigation bar
-    3. Same-directory related html bidirectional links
-
-    markdown2html conversion
-    1. Include complete original document content
-    2. Comply with the above three specs
+<html_convert_rule>
+1. Include complete original document content
+2. Comply with the above html_spec
+</html_convert_rule>
 
 Mnilax 最后给了两条核心原则：
 每条规则都应该能回答一个问题：这条规则预防的是什么错误？ 如果答不上来，这条规则就是噪音。6 条针对你真踩过的坑的规则，比 12 条里有 6 条永远用不上的更好。

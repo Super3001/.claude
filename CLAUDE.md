@@ -174,16 +174,22 @@ Windows-only: Install software at `$MAIN_ROOT/Soft/`.
 # Agent HTML Spec & MD-to-HTML Conversion Rules
 
 <html_spec>
-1. A self-contained html
-2. Left collapsible navigation bar
-3. Same-directory related html bidirectional links
-4. Code blocks must be styled — no bare <pre><code> without syntax highlighting, background, padding, and border-radius
+1. 一个自包含html 
+2. 左侧可折叠导航栏
+3. 同目录相关html双向链接
+4. 代码块<pre><code>要带格式，不要裸着
 </html_spec>
 
 <html_convert_rule>
-1. Include complete original document content
-2. Comply with the above html_spec
+1. 包含原文档的全部信息
+2. 遵循上面的html规范
 </html_convert_rule>
+
+<file_path_convention>
+HTML默认输出到~/.agent/xxx.html
+</file_path_convention>
+
+# CLAUDE.md Principles
 
 Mnilax 最后给了两条核心原则：
 每条规则都应该能回答一个问题：这条规则预防的是什么错误？ 如果答不上来，这条规则就是噪音。6 条针对你真踩过的坑的规则，比 12 条里有 6 条永远用不上的更好。

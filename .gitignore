@@ -18,3 +18,4 @@ settings*.json
 stats-cache.json
 usage-data
 __pycache__
+.last-cleanup

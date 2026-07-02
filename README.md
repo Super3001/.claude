@@ -1,7 +1,7 @@
 awesome square:
 
-github topics #harness #markdown
-awesome + (of awesome) x 4 (a gtihub repo)
+- github topics #harness #markdown
+- awesome + (of awesome) x 4 (a gtihub repo)
 
 awesome skills:
 

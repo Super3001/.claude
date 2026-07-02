@@ -1,3 +1,7 @@
+awesome square:
+
+github topics #harness #markdown
+awesome + (of awesome) x 4 (a gtihub repo)
 
 awesome skills:
 
@@ -19,5 +23,6 @@ awesome agent tools:
 - codegraph
 - gitNexus
 
-awesome agent workshop:
+awesome agent harness and workshop:
 - ACEHarness
+- deerflow

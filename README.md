@@ -1,20 +1,20 @@
 
 awesome skills:
 
-anthropic
-kazix-skills
-deerflow
-huashu-skills
+- anthropic
+- kazix-skills
+- deerflow
+- huashu-skills
 
 awesome workflow and plugins:
-superpowers
-pua
-trellis
-caveman
-grill-me
+- superpowers
+- pua
+- trellis
+- caveman
+- grill-me
 
 awesome agent tools:
-rtk
+- rtk
 
 awesome agent workshop:
-ACEHarness
+- ACEHarness

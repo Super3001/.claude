@@ -46,4 +46,8 @@ awesome agent harness and workshop:
 
 awesome multi-agent ui:
 - [warp](https://www.warp.dev/)
-- 
+- [ocra](https://github.com/stablyai/orca)
+- [tutti](https://github.com/nutthouse/tutti)
+
+ai for company:
+- [onyx](https://github.com/onyx-dot-app/onyx)
